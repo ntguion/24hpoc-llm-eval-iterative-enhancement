@@ -1,6 +1,6 @@
 # 📞 LLM Eval & Iterative Prompt Enhancement Demo
 
-> **Production-grade evaluation infrastructure demonstrating the complete feedback loop:** synthetic data generation, LLM-as-judge scoring, automated prompt optimization, and measurable quality improvements.
+> **Evaluation infrastructure demonstrating the complete feedback loop:** synthetic data generation, LLM-as-judge scoring, automated prompt optimization, and measurable quality improvements.
 
 Built to showcase eval-driven development methodologies for LLM applications—the kind of systematic, data-driven approach used by Applied AI teams at companies like OpenAI.
 
