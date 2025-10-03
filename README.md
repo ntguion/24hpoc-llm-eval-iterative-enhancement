@@ -1,77 +1,122 @@
-# 📞 Business-Aligned LLM Eval & Iterative Enhancement
+# 24h POCs — #002 Business-Aligned Agent Assist
 
-> **Production-grade evaluation infrastructure demonstrating the complete feedback loop:** synthetic data generation, business-aligned rubrics, LLM-as-judge scoring, automated prompt optimization, and measurable quality improvements.
+**Evaluating non-deterministic LLM output with a business rubric**
 
-Built to showcase eval-driven development methodologies for LLM applications—the kind of systematic, data-driven approach used by Applied AI teams at companies like OpenAI, with a focus on real business requirements.
+## TL;DR
 
----
-
-## 🎯 What This Demonstrates
-
-This is a **fully functional eval pipeline** that shows:
-
-1. **Synthetic Data Generation** - LLM-powered transcript generation with reproducible seeding
-2. **Business-Aligned Evaluation** - Real call center rubrics with measurable quality standards
-3. **LLM-as-Judge** - Rigorous scoring against production-grade quality standards
-4. **Automated Prompt Tuning** - AI-suggested improvements based on failure analysis
-5. **Measurable Iteration** - Track score evolution across prompt changes with fixed rubric dimensions
-6. **Data Consistency** - Strict ID-based lineage tracking across all artifacts
-7. **Cost Optimization** - Smart model selection (gpt-4o-mini for generation, GPT-4.1 for quality tasks)
-
-**Key Result:** Business-aligned rubrics drive realistic quality improvements. Over 3 iterations, we achieved **+10.5% improvement in factuality (3.80 → 4.20)** with cost-optimized model selection. See [ITERATION_REPORT.md](ITERATION_REPORT.md) for the complete analysis.
+**Thesis.** Business teams adopt what they can evaluate. Non-deterministic LLM output needs a yardstick leaders recognize.
+**Method.** Use an LLM as judge to fill the same rubric a human supervisor would. Iterate prompts against that rubric and measure the change.
+**Result.** In 24 hours, factuality improved **+0.40** and actionability briefly improved **+0.20** before regressing under tighter structure. This is a **preliminary demo** of a method I have used successfully at ~10× larger scale in commercial settings (national health plan level). Small moves signal a system that can be steered.
 
 ---
 
-## 🚀 Quick Start (< 5 Minutes)
+## 1) Framing the problem
 
-### Prerequisites
-- Python 3.10+
-- At least one API key (OpenAI recommended)
+Business adoption of AI is not blocked by demos. It is blocked by trust and performance at scale. Leaders really want two things:
 
-### Setup
+1. Will this consistently capture what matters for the workflow (resolution, action, context, compliance)?
+2. Will this avoid harming end-user experience (hallucinations, missed steps, sloppy compliance)?
+
+Traditional testing leaders know assumes determinism. They expect a single correct answer, which is not how LLMs behave. To bridge that gap, we evaluate outputs with **rubrics** that reflect business outcomes rather than academic benchmarks. Humans and the model apply the same rubric. That creates clarity and establishes a path to adoption.
+
+---
+
+## 2) The 24-hour POC
+
+Goal: demonstrate the loop simply, show directional results, and mirror what works in practice—without pretending to be "production-grade."
+
+**What I built**
+
+* **Business rubric** with five dimensions: call resolution, action items, context preservation, compliance notes, quality indicators (weights and gates).
+* **Human-mirrored judging.** The LLM judge fills the same rubric a supervisor would.
+* **Parallel review cycles.** Calibrate the judge to match human SMEs, then let the judge run at scale.
+* **Self-guided prompt improvement.** The judge provides short rationales. A model converts those rationales (plus transcripts and summaries) into **diff-ready** prompt edits. Re-run and measure the delta.
+
+**Minimal model mix** (cost-aware for a POC)
+
+* Generate transcripts: **gpt-4o-mini**
+* Summarize and judge: **GPT-4.1**
+
+---
+
+## 3) What moved in a night
+
+Small sample, fixed rubric, three iterations.
+
+|                       Iteration |    Avg   | Factuality | Actionability | Notes                            |
+| ------------------------------: | :------: | :--------: | :-----------: | -------------------------------- |
+|                    0 (baseline) | **4.24** |  **3.80**  |    **3.80**   | simple 3-rule prompt             |
+|                   1 (+evidence) |   4.24   |    4.00    |      4.00     | tighter support requirements     |
+|        2 (+factuality controls) | **4.32** |  **4.20**  |    **4.20**   | best overall                     |
+| 3 (+structured actions/context) |   4.24   |    4.20    |      3.80     | structure up, actionability down |
+
+**Read:** Explicit evidence and outcome controls reliably lift factuality. Actionability is multi-factor; formatting alone is not enough. Costs stayed roughly **~$0.10 per iteration** for five samples—easy to defend for a POC.
+
+---
+
+## 4) How this earns adoption
+
+* **Transparent scoring.** Leaders see the same rubric they use in QA.
+* **Human-calibrated automation.** LLM judge scales review volume while staying aligned to SME standards.
+* **Actionable feedback.** Rationales distill into concrete prompt edits, not vibes.
+* **Measured iteration.** Re-run comparable sets and show the delta; expand data variety as confidence grows.
+
+I have used this exact pattern with a national health plan: human + LLM reviews in parallel during AEP, prompt rules refined by model-generated diffs, and steady improvements to a summarization engine that ops teams accepted.
+
+---
+
+## 5) Run the demo
 
 ```bash
-# 1. Clone and install
 git clone https://github.com/ntguion/24hpoc-llm-eval-iterative-enhancement.git
 cd 24hpoc-llm-eval-iterative-enhancement
 python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -e .
-
-# 2. Configure API keys
-cp .env.example .env
-# Edit .env and add your OPENAI_API_KEY, ANTHROPIC_API_KEY, GOOGLE_API_KEY
-
-# 3. Launch the UI
+cp .env.example .env        # add OPENAI_API_KEY (and others if you like)
 streamlit run streamlit_app.py
 ```
 
-**That's it!** Open http://localhost:8501 and click through the pipeline.
+Optional CLI:
+
+```bash
+python -m app.cli generate --provider openai --model small --N 10
+python -m app.cli summarize --provider openai --model small
+python -m app.cli judge --provider openai --model small
+python -m app.cli tune --use-llm
+```
 
 ---
 
-## 💡 Key Features
+## 6) A note on seeds, sets, and scale
 
-### For Recruiters & Hiring Managers
-
-- **Complete Eval Loop** - Not just a demo, but a working system showing eval → feedback → improvement
-- **Production Patterns** - Concurrent processing, cost tracking, audit trails, error handling
-- **Measurable Results** - Every change is quantified with before/after metrics
-- **Clean Architecture** - Modular design, type hints, proper abstractions
-- **Ready to Run** - No complex setup, works out of the box
-
-### For Engineers
-
-- **Multi-Provider Support** - OpenAI, Anthropic, Google Gemini with native SDKs
-- **Configurable Rubrics** - JSON-based evaluation criteria with weighted dimensions
-- **LLM-Assisted Tuning** - Automatically generates actionable prompt improvements
-- **Artifact Versioning** - Every run produces versioned, traceable outputs
-- **Diff Visualization** - Side-by-side prompt comparisons with apply/reject workflow
-- **Session Tracking** - Real-time token/cost monitoring across pipeline steps
+For quick loops you can reuse a seed to make A/B deltas crisp. As you gain confidence, expand the set and diversify transcripts. In client work, the same approach scaled about an order of magnitude up and continued to deliver lift once the rubric was tuned with SMEs.
 
 ---
 
-## 🏗️ Architecture
+## 7) Appendix: the bits that matter
+
+* **Rubric:** five dimensions with weights and a gate at average 4.2 and no critical failures.
+* **Prompt evolution:**
+
+  ```
+  Iter 0: 3 simple rules
+  Iter 1: + evidence requirements, + action item details
+  Iter 2: + factuality controls, + outcome clarity
+  Iter 3: + structured action items, + context coverage
+  ```
+* **Observed metrics (this POC):** factuality **+0.40** net; actionability **+0.20 then back to baseline**; coverage steady at **4.00**; structure **4.80 → 4.40**; safety steady.
+* **Why evidence helps:** it pushes the model to anchor on transcript facts and reduces hallucination risk without heavy scaffolding.
+
+---
+
+---
+
+# 🏗️ Technical Architecture & Implementation
+
+*[Clear line between business case and technical implementation]*
+
+## System Architecture
 
 ```
 ┌─────────────┐
@@ -98,7 +143,7 @@ streamlit run streamlit_app.py
 └─────────────┘
 ```
 
-### Data Flow
+### Data Flow & Consistency
 
 1. **Transcripts** have ID: `TRA-20251002_125416-001`
 2. **Summaries** have ID: `SUM-001` + `transcript_id` link
@@ -106,49 +151,15 @@ streamlit run streamlit_app.py
 
 **Strict Consistency:** UI only shows data when IDs perfectly align—no stale results ever displayed.
 
----
+## Core Components
 
-## 📊 Example Workflow
+### Multi-Provider Architecture
+- **OpenAI** - Native SDK with GPT-4o-mini, GPT-4.1
+- **Anthropic** - Claude 3.5 Haiku, Claude 3.5 Sonnet  
+- **Google** - Gemini 2.0 Flash, Gemini 1.5 Pro
+- **Mock** - For testing and development
 
-### Iteration 1: Baseline
-```bash
-$ python -m app.cli generate --provider openai --model small --N 10
-$ python -m app.cli summarize --provider openai --model large
-$ python -m app.cli judge --provider openai --model large
-```
-
-**Result:** avg=4.24 (failing 4.2 threshold)
-
-**Judge Feedback:**
-```
-- Require that all statements in the summary be directly supported by explicit evidence from the transcript
-- Specify that all action items must include clear, transcript-supported details about timelines, responsible parties, and notification methods when mentioned
-- Be concise but ensure all required schema fields are fully addressed with specific, transcript-supported details
-```
-
-### Iteration 2: After Applying Improvements
-Apply suggestions → Re-run pipeline
-
-**Result:** avg=4.32 (+0.08 improvement, factuality +0.20!)
-
-**This demonstrates the compounding feedback loop that drives quality improvements.**
-
----
-
-## 🎨 UI Features
-
-- **Unified Pipeline View** - All steps on one page with live progress
-- **Interactive Samples** - See transcripts, summaries, and evaluations side-by-side
-- **Visual Diff** - Green/red highlighting for prompt changes
-- **Live Metrics** - Real-time token counts and cost tracking
-- **Distribution Charts** - Score breakdowns across eval dimensions
-- **One-Click Apply** - Apply AI-suggested improvements and re-run
-
----
-
-## 🔧 Configuration
-
-### Business Rubric (`configs/rubric.default.json`)
+### Business Rubric System
 ```json
 {
   "dimensions": [
@@ -165,7 +176,7 @@ Apply suggestions → Re-run pipeline
 }
 ```
 
-### Model Selection (`configs/models.yaml`)
+### Cost-Optimized Model Selection
 ```yaml
 openai:
   small:
@@ -176,40 +187,52 @@ openai:
     display_name: "GPT-4.1"
 ```
 
-### Prompts (`configs/prompts/`)
-- `summarizer.system.txt` - Instructions for the task being evaluated
-- `summarizer.user.txt` - Template with schema and examples
-- `judge.system.txt` - Scoring philosophy and criteria
-- `judge.user.txt` - Rubric application and output format
+## Production Patterns
 
----
+### Concurrent Processing
+- **ThreadPoolExecutor** for parallel API calls (5-32 workers)
+- **Progress tracking** with real-time updates
+- **Error handling** with graceful degradation
 
-## 📈 Technical Highlights
+### Audit & Cost Tracking
+- **Every API call logged** to `calls.jsonl` with usage, cost, latency
+- **Session totals** tracked across pipeline steps
+- **Provider-specific pricing** with real-time cost calculation
 
-### For OpenAI Applied Evals Role
+### Data Integrity
+- **Strict ID-based lineage** prevents stale data display
+- **Versioned artifacts** with timestamped run directories
+- **Deterministic sampling** with temperature and seed control
 
-✅ **Eval Design** - Multi-dimensional rubrics with weighted scoring  
-✅ **LLM-as-Judge** - Production-grade evaluation with detailed rationales  
-✅ **Feedback Loops** - Automated prompt tuning from eval signals  
-✅ **Reproducibility** - Seeded sampling, versioned artifacts, audit trails  
-✅ **Scalability** - Concurrent workers (5-32x parallelism)  
-✅ **Cost Management** - Per-call tracking with provider-specific pricing  
-✅ **Data Integrity** - Strict lineage tracking prevents stale results  
-✅ **Quantified Impact** - Every change measured with before/after metrics
+## UI Features
 
-### Code Quality
+### Streamlit Interface
+- **Unified pipeline view** - All steps on one page with live progress
+- **Interactive samples** - See transcripts, summaries, and evaluations side-by-side
+- **Visual diff** - Green/red highlighting for prompt changes
+- **Live metrics** - Real-time token counts and cost tracking
+- **Distribution charts** - Score breakdowns across eval dimensions
 
-- Type hints throughout
-- Modular architecture (provider abstraction, pluggable runners)
-- Comprehensive error handling
-- Clean separation of concerns (CLI, UI, core logic)
-- Docstrings and inline comments
-- Git-friendly (proper .gitignore, no secrets committed)
+### CLI Interface
+```bash
+# Complete pipeline
+python -m app.cli generate --provider openai --model small --N 10
+python -m app.cli summarize --provider openai --model large
+python -m app.cli judge --provider openai --model large
+python -m app.cli tune --use-llm --apply --auto-apply
+python -m app.cli report
+```
 
----
+## Code Quality & Engineering
 
-## 🧪 Testing
+### Architecture Highlights
+- **Type hints throughout** with Pydantic models
+- **Modular design** with provider abstraction and pluggable runners
+- **Clean separation** of concerns (CLI, UI, core logic)
+- **Comprehensive error handling** with graceful fallbacks
+- **Git-friendly** with proper .gitignore and no secrets committed
 
+### Testing & Validation
 ```bash
 # Run tests
 pytest
@@ -222,7 +245,6 @@ pytest tests/test_end_to_end.py -v
 
 ## 📚 Documentation
 
-- **This README** - Quick start and overview
 - **[ITERATION_REPORT.md](ITERATION_REPORT.md)** - Complete 3-iteration study with business-aligned rubrics
 - **Inline code comments** - Explanation of complex logic
 
@@ -237,15 +259,6 @@ This is a portfolio demo project. Feel free to fork, adapt, or use as inspiratio
 ## 📜 License
 
 MIT License - See [LICENSE](LICENSE) for details.
-
----
-
-## 🎓 Learning Resources
-
-This demo embodies concepts from:
-- OpenAI's [Evals framework](https://github.com/openai/evals)
-- Anthropic's [Constitutional AI](https://www.anthropic.com/constitutional.pdf)
-- Google's [RLHF methodology](https://arxiv.org/abs/2009.01325)
 
 ---
 
