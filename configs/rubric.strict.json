@@ -1,0 +1,15 @@
+{
+  "dimensions": [
+    {"name": "coverage", "weight": 0.25, "min_threshold": 4.5, "description": "Captures ALL key details including verification, timelines, plan specifics, and follow-ups without vagueness"},
+    {"name": "factuality", "weight": 0.30, "min_threshold": 5.0, "description": "Zero hallucinations or assumptions—every claim directly traceable to transcript"},
+    {"name": "actionability", "weight": 0.20, "min_threshold": 4.0, "description": "Next steps are specific (who/what/when) with deadlines, contact methods, and clear instructions"},
+    {"name": "structure_brevity", "weight": 0.15, "min_threshold": 4.0, "description": "Concise yet complete, no redundancy, clear logical flow, all required fields present"},
+    {"name": "safety_compliance", "weight": 0.10, "min_threshold": 5.0, "description": "No PHI specifics, includes disclaimers, flags any compliance concerns"}
+  ],
+  "gates": {
+    "avg_threshold": 4.2,
+    "no_hallucination_flags": true,
+    "description": "Production-grade quality: high bar for coverage and specificity, zero tolerance for hallucinations"
+  }
+}
+

@@ -1,8 +1,8 @@
-# 📞 LLM Eval & Iterative Prompt Enhancement Demo
+# 📞 Business-Aligned LLM Eval & Iterative Enhancement
 
-> **Evaluation infrastructure demonstrating the complete feedback loop:** synthetic data generation, LLM-as-judge scoring, automated prompt optimization, and measurable quality improvements.
+> **Production-grade evaluation infrastructure demonstrating the complete feedback loop:** synthetic data generation, business-aligned rubrics, LLM-as-judge scoring, automated prompt optimization, and measurable quality improvements.
 
-Built to showcase eval-driven development methodologies for LLM applications—the kind of systematic, data-driven approach used by Applied AI teams at companies like OpenAI.
+Built to showcase eval-driven development methodologies for LLM applications—the kind of systematic, data-driven approach used by Applied AI teams at companies like OpenAI, with a focus on real business requirements.
 
 ---
 
@@ -11,14 +11,14 @@ Built to showcase eval-driven development methodologies for LLM applications—t
 This is a **fully functional eval pipeline** that shows:
 
 1. **Synthetic Data Generation** - LLM-powered transcript generation with reproducible seeding
-2. **Structured Evaluation** - Multi-dimensional rubrics with detailed rationales
+2. **Business-Aligned Evaluation** - Real call center rubrics with measurable quality standards
 3. **LLM-as-Judge** - Rigorous scoring against production-grade quality standards
 4. **Automated Prompt Tuning** - AI-suggested improvements based on failure analysis
-5. **Measurable Iteration** - Quantified lift from prompt changes (+0.08 avg improvement demonstrated)
+5. **Measurable Iteration** - Track score evolution across prompt changes with fixed rubric dimensions
 6. **Data Consistency** - Strict ID-based lineage tracking across all artifacts
-7. **Production Patterns** - Concurrent execution, cost tracking, audit trails, versioned outputs
+7. **Cost Optimization** - Smart model selection (gpt-4o-mini for generation, GPT-4.1 for quality tasks)
 
-**Key Result:** Demonstrated +0.08 average score improvement (3.98 → 4.06) through two iteration cycles, with some samples improving by +0.4 points.
+**Key Result:** Business-aligned rubrics drive realistic quality improvements. Over 3 iterations, we achieved **+10.5% improvement in factuality (3.80 → 4.20)** with cost-optimized model selection. See [ITERATION_REPORT.md](ITERATION_REPORT.md) for the complete analysis.
 
 ---
 
@@ -148,17 +148,19 @@ Apply suggestions → Re-run pipeline
 
 ## 🔧 Configuration
 
-### Rubric (`configs/rubric.default.json`)
+### Business Rubric (`configs/rubric.default.json`)
 ```json
 {
   "dimensions": [
-    {"name": "coverage", "weight": 0.25, "min_threshold": 4.5},
-    {"name": "factuality", "weight": 0.30, "min_threshold": 5.0},
-    ...
+    {"name": "call_resolution", "weight": 0.25, "min_threshold": 4.0},
+    {"name": "action_items", "weight": 0.25, "min_threshold": 4.0},
+    {"name": "context_preservation", "weight": 0.20, "min_threshold": 4.0},
+    {"name": "compliance_notes", "weight": 0.15, "min_threshold": 4.0},
+    {"name": "quality_indicators", "weight": 0.15, "min_threshold": 4.0}
   ],
   "gates": {
     "avg_threshold": 4.2,
-    "no_hallucination_flags": true
+    "no_critical_failures": true
   }
 }
 ```
@@ -197,8 +199,7 @@ Apply suggestions → Re-run pipeline
 ## 📚 Documentation
 
 - **This README** - Quick start and overview
-- **ARCHITECTURE.md** - Deep technical dive (coming soon)
-- **CLEANUP_DELTA.md** - Development journey and cleanup plan
+- **[ITERATION_REPORT.md](ITERATION_REPORT.md)** - Complete 3-iteration study with business-aligned rubrics
 - **Inline code comments** - Explanation of complex logic
 
 ---

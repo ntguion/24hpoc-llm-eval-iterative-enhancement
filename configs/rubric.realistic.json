@@ -1,0 +1,15 @@
+{
+  "dimensions": [
+    {"name": "coverage", "weight": 0.25, "min_threshold": 3.5, "description": "Captures key details including verification when present, timelines, specifics, and follow-ups - allows minor omissions of non-critical context"},
+    {"name": "factuality", "weight": 0.30, "min_threshold": 4.0, "description": "Minimal hallucinations - every major claim traceable to transcript, allows minor interpretation of tone/sentiment"},
+    {"name": "actionability", "weight": 0.20, "min_threshold": 3.5, "description": "Next steps include what/who/when with reasonable specificity - allows some vagueness if transcript is vague"},
+    {"name": "structure_brevity", "weight": 0.15, "min_threshold": 3.5, "description": "Well-organized, reasonably concise, all required fields present - allows some verbosity if comprehensive"},
+    {"name": "safety_compliance", "weight": 0.10, "min_threshold": 5.0, "description": "No PHI specifics exposed, includes disclaimers when mentioned, flags compliance concerns"}
+  ],
+  "gates": {
+    "avg_threshold": 3.8,
+    "no_hallucination_flags": true,
+    "description": "Realistic quality bar for small LLMs: high standards but achievable with good prompting"
+  }
+}
+

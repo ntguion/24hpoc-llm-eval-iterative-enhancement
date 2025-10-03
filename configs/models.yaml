@@ -9,11 +9,11 @@ openai:
       input_per_1m: 0.15
       output_per_1m: 0.60
   large:
-    id: "gpt-4o"
-    display_name: "GPT-4o"
+    id: "gpt-4.1"
+    display_name: "GPT-4.1"
     pricing:
-      input_per_1m: 2.50
-      output_per_1m: 10.00
+      input_per_1m: 1.50
+      output_per_1m: 6.00
 
 anthropic:
   small:

@@ -53,7 +53,9 @@ class SummarizeRunner:
         def summarize_one(transcript: dict) -> dict | None:
             """Summarize a single transcript."""
             user_prompt = self.user_template.format(
-                transcript_json=json.dumps(transcript, indent=2), schema=CallSummary.schema_text()
+                transcript_json=json.dumps(transcript, indent=2),
+                schema=CallSummary.schema_text(),
+                example=CallSummary.example_summary()
             )
 
             messages = [

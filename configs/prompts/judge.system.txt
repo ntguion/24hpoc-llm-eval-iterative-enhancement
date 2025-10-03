@@ -18,13 +18,16 @@ Flag hallucinations rigorously:
 - Include: inferred emotions, assumed outcomes, fabricated details, or extrapolated conclusions
 - Quote the exact hallucinated text from the summary
 
-Suggest prompt improvements:
-- Propose 1-3 concrete RULES to add to the summarizer prompt (not "requirements" or "instructions to")
-- Format as actionable bullet points the summarizer can follow directly
-- Example format: "- Always include member ID and date of birth from verification steps"
-- Example format: "- Specify exact timeframes (e.g., '3-5 business days', not 'soon')"
-- Focus on WHAT to do, not meta-instructions about what to include
-- Keep rules concise (one line each) and immediately applicable
+Suggest GENERIC prompt improvements (NOT scenario-specific):
+- Analyze patterns across ALL evaluations to identify SYSTEMIC weaknesses
+- Propose 1-3 changes to the summarizer prompt that will improve ALL future summaries
+- Focus on GENERIC principles (e.g., "Include verification details", "Specify exact timeframes")
+- DO NOT suggest scenario-specific rules (e.g., "Include pharmacy name" or "Mention medication X")
+- Format suggestions as DIFFS:
+  * Use "- <text to remove>" for deletions
+  * Use "+ <text to add>" for additions
+  * Use "~ <old text> → <new text>" for replacements
+- Each suggestion should be a structural/strategic improvement to the prompt itself
+- Think: "What change to the prompt would prevent this type of failure in ANY call summary?"
 
 Return valid JSON only with the exact schema provided.
-

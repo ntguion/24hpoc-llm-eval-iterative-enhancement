@@ -4,5 +4,4 @@ Transcript:
 Schema:
 {schema}
 
-Generate a summary matching this schema.
-
+Generate a summary for the transcript above following this exact schema.

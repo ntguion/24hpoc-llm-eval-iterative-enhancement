@@ -10,25 +10,36 @@ def llm_suggest_changes(
     current_prompt: str,
     evaluations: list[dict],
 ) -> tuple[list[str], dict]:
-    """Use an LLM to propose prompt improvements.
+    """Use an LLM to propose GENERIC prompt improvements based on evaluation patterns.
 
     Returns:
         (suggestions, metadata) where metadata includes usage/cost info
     """
     failure_summary = summarize_failures(evaluations)
 
-    system_msg = """You are a prompt engineering expert specializing in call summarization tasks.
-Analyze evaluation failures and suggest specific, actionable improvements to the prompt.
+    system_msg = """You are a prompt engineering expert. Your job is to improve prompts by identifying SYSTEMIC, GENERIC issues—not scenario-specific problems.
+
+When analyzing evaluation failures:
+- Look for PATTERNS across multiple evaluations
+- Focus on STRUCTURAL weaknesses in the prompt itself
+- Suggest changes that will help ALL future summaries, not just current examples
 
 Output format: JSON object with:
 {
   "suggestions": [
-    {"type": "add", "text": "specific instruction to add"},
-    {"type": "remove", "text": "specific text to remove"},
-    {"type": "modify", "old": "current text", "new": "improved text"}
+    {"type": "add", "text": "generic principle to add (e.g., 'Include verification details when present')"},
+    {"type": "remove", "text": "text to remove from current prompt"},
+    {"type": "replace", "old": "current text", "new": "improved text"}
   ],
-  "rationale": "brief explanation of why these changes will help"
-}"""
+  "rationale": "explanation focusing on WHY these generic improvements will help"
+}
+
+CRITICAL RULES:
+- DO NOT suggest scenario-specific details (e.g., "include pharmacy name", "mention medication X")
+- DO suggest generic patterns (e.g., "specify exact timeframes", "include verification details")
+- Think: "What structural change prevents this TYPE of failure in ANY call?"
+- Keep the prompt concise—remove redundant or overly specific rules
+"""
 
     user_msg = f"""Current Summarization Prompt:
 {current_prompt}
@@ -36,15 +47,15 @@ Output format: JSON object with:
 Evaluation Results Summary:
 {failure_summary}
 
-Based on the low-scoring dimensions and specific failures, propose 2-4 targeted improvements.
-Focus on:
-- Missing information (coverage issues)
-- Factual accuracy (hallucinations)
-- Action items (actionability issues)
-- Conciseness and structure
-- Safety/compliance concerns
+Analyze the PATTERN of failures. Propose 2-4 GENERIC improvements to the prompt structure.
 
-Return JSON only, no markdown fences."""
+Focus on:
+1. Coverage: Are summaries missing categories of information systematically?
+2. Actionability: Do summaries lack clear next steps in a consistent way?
+3. Precision: Are summaries vague where they should be specific?
+4. Redundancy: Can we simplify or consolidate existing rules?
+
+Return ONLY generic, reusable improvements. Return JSON only, no markdown fences."""
 
     messages = [Message(role="system", content=system_msg), Message(role="user", content=user_msg)]
 
@@ -70,7 +81,7 @@ Return JSON only, no markdown fences."""
                 suggestions.append(f"+ {item.get('text', '')}")
             elif item_type == "remove":
                 suggestions.append(f"- {item.get('text', '')}")
-            elif item_type == "modify":
+            elif item_type == "replace":
                 suggestions.append(f"- {item.get('old', '')}")
                 suggestions.append(f"+ {item.get('new', '')}")
 

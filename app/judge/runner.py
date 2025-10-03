@@ -92,7 +92,18 @@ class JudgeRunner:
                     else:
                         json_str = raw_text
                 
-                evaluation = json.loads(json_str)
+                # Attempt to parse JSON with error handling
+                try:
+                    evaluation = json.loads(json_str)
+                except json.JSONDecodeError as e:
+                    # Try cleaning up common formatting issues
+                    cleaned = re.sub(r'\s+', ' ', json_str)
+                    try:
+                        evaluation = json.loads(cleaned)
+                    except json.JSONDecodeError:
+                        # Log error and skip this evaluation by returning None
+                        error_msg = f"JSON parse error: {str(e)[:100]}"
+                        return None  # Skip this evaluation
                 evaluation["call_id"] = summary["call_id"]
 
                 # Add evaluation_id, summary_id, and transcript_id for traceability
@@ -234,6 +245,14 @@ class JudgeRunner:
                     result = future.result()
                     completed_count += 1
 
+                    # Handle case where evaluate_one returns None (JSON parsing error)
+                    if result is None:
+                        print(
+                            f"  [{completed_count}/{total_pairs}] {summary.get('call_id', 'unknown')} → ERROR: JSON parsing failed",
+                            flush=True,
+                        )
+                        continue
+
                     if result["error"]:
                         print(
                             f"  [{completed_count}/{total_pairs}] {result['call_id']} → ERROR: {result['error']}",
@@ -246,7 +265,8 @@ class JudgeRunner:
                             flush=True,
                         )
 
-                    evaluations.append(result["evaluation"])
+                    if result is not None and "evaluation" in result:
+                        evaluations.append(result["evaluation"])
 
                     # Print progress message for UI
                     print(f"[judge] Progress: {completed_count}/{total_pairs} evaluations completed", flush=True)
