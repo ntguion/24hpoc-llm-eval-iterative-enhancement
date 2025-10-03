@@ -264,10 +264,10 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ## 🔗 Connect
 
-Built by Nathan [Your Last Name]  
-📧 [your.email@example.com](mailto:your.email@example.com)  
-💼 [LinkedIn](https://linkedin.com/in/yourprofile)  
-🐙 [GitHub](https://github.com/yourusername)
+Built by Nathan Guion  
+📧 [athanguion1@gmail.com](mailto:nathanguion1@gmail.com)  
+💼 [LinkedIn](https://linkedin.com/in/nathanguion)  
+🐙 [GitHub](https://github.com/ntguion)
 
 ---
 
