@@ -32,15 +32,15 @@ This is a **fully functional eval pipeline** that shows:
 
 ```bash
 # 1. Clone and install
-git clone <your-repo-url>
-cd call-summary-copilot
+git clone https://github.com/ntguion/24hpoc-llm-eval-iterative-enhancement.git
+cd 24hpoc-llm-eval-iterative-enhancement
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -e .
 
 # 2. Configure API keys
 cp .env.example .env
-# Edit .env and add your OPENAI_API_KEY
+# Edit .env and add your OPENAI_API_KEY, ANTHROPIC_API_KEY, GOOGLE_API_KEY
 
 # 3. Launch the UI
 streamlit run streamlit_app.py
@@ -113,23 +113,23 @@ streamlit run streamlit_app.py
 ### Iteration 1: Baseline
 ```bash
 $ python -m app.cli generate --provider openai --model small --N 10
-$ python -m app.cli summarize --provider openai --model small
-$ python -m app.cli judge --provider openai --model small
+$ python -m app.cli summarize --provider openai --model large
+$ python -m app.cli judge --provider openai --model large
 ```
 
-**Result:** avg=3.98 (failing 4.2 threshold)
+**Result:** avg=4.24 (failing 4.2 threshold)
 
 **Judge Feedback:**
 ```
-- Always include verification details such as member ID and date of birth
-- Specify exact timeframes for actions (e.g., '3-5 business days', not 'soon')
-- Include specific medication names, pharmacy names, and plan codes when mentioned
+- Require that all statements in the summary be directly supported by explicit evidence from the transcript
+- Specify that all action items must include clear, transcript-supported details about timelines, responsible parties, and notification methods when mentioned
+- Be concise but ensure all required schema fields are fully addressed with specific, transcript-supported details
 ```
 
 ### Iteration 2: After Applying Improvements
 Apply suggestions → Re-run pipeline
 
-**Result:** avg=4.06 (+0.08 improvement, some samples +0.4!)
+**Result:** avg=4.32 (+0.08 improvement, factuality +0.20!)
 
 **This demonstrates the compounding feedback loop that drives quality improvements.**
 
@@ -165,8 +165,20 @@ Apply suggestions → Re-run pipeline
 }
 ```
 
+### Model Selection (`configs/models.yaml`)
+```yaml
+openai:
+  small:
+    id: "gpt-4o-mini"        # $0.15/$0.60 per 1M tokens
+    display_name: "GPT-4o Mini"
+  large:
+    id: "gpt-4.1"            # $1.50/$6.00 per 1M tokens
+    display_name: "GPT-4.1"
+```
+
 ### Prompts (`configs/prompts/`)
 - `summarizer.system.txt` - Instructions for the task being evaluated
+- `summarizer.user.txt` - Template with schema and examples
 - `judge.system.txt` - Scoring philosophy and criteria
 - `judge.user.txt` - Rubric application and output format
 
@@ -196,14 +208,6 @@ Apply suggestions → Re-run pipeline
 
 ---
 
-## 📚 Documentation
-
-- **This README** - Quick start and overview
-- **[ITERATION_REPORT.md](ITERATION_REPORT.md)** - Complete 3-iteration study with business-aligned rubrics
-- **Inline code comments** - Explanation of complex logic
-
----
-
 ## 🧪 Testing
 
 ```bash
@@ -213,6 +217,14 @@ pytest
 # Run end-to-end test (mocked)
 pytest tests/test_end_to_end.py -v
 ```
+
+---
+
+## 📚 Documentation
+
+- **This README** - Quick start and overview
+- **[ITERATION_REPORT.md](ITERATION_REPORT.md)** - Complete 3-iteration study with business-aligned rubrics
+- **Inline code comments** - Explanation of complex logic
 
 ---
 
@@ -240,9 +252,9 @@ This demo embodies concepts from:
 ## 🔗 Connect
 
 Built by Nathan [Your Last Name]  
-📧 [nathanguion1@gmail.com](mailto:nathanguion1@gmail.com)  
-💼 [LinkedIn](https://linkedin.com/in/nathanguion)
-🐙 [GitHub](https://github.com/ntguion)
+📧 [your.email@example.com](mailto:your.email@example.com)  
+💼 [LinkedIn](https://linkedin.com/in/yourprofile)  
+🐙 [GitHub](https://github.com/yourusername)
 
 ---
 
