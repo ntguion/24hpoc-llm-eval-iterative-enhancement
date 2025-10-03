@@ -1,0 +1,707 @@
+
+━━━━ ITERATION 1/5 ━━━━
+[cli] Run ID: 20251003_135749
+[cli] Run directory: runs/20251003_135749
+
+[generate] Generating 10 synthetic transcripts with 5 workers...
+[generate] Progress: 1/10 transcripts completed
+[generate] Progress: 2/10 transcripts completed
+[generate] Progress: 3/10 transcripts completed
+[generate] Progress: 4/10 transcripts completed
+[generate] Progress: 5/10 transcripts completed
+[generate] Progress: 6/10 transcripts completed
+[generate] Progress: 7/10 transcripts completed
+[generate] Progress: 8/10 transcripts completed
+[generate] Progress: 9/10 transcripts completed
+[generate] Progress: 10/10 transcripts completed
+[generate] Saved 10 transcripts to data/transcripts.jsonl and data/transcripts.csv
+[generate] ✓ Generated 10 transcripts
+[cli] Using run: 20251003_135749
+
+[summarize] Loading 10 transcripts...
+[summarize] Summarizing 10 transcripts with 5 workers...
+  [1/10] TRA-20251003_135821-001 → 1095 tokens, $0.0002
+[summarize] Progress: 1/10 summaries completed
+  [2/10] TRA-20251003_135821-005 → 1069 tokens, $0.0002
+[summarize] Progress: 2/10 summaries completed
+  [3/10] TRA-20251003_135821-004 → 1121 tokens, $0.0002
+[summarize] Progress: 3/10 summaries completed
+  [4/10] TRA-20251003_135821-003 → 1096 tokens, $0.0002
+[summarize] Progress: 4/10 summaries completed
+  [5/10] TRA-20251003_135821-002 → 1057 tokens, $0.0002
+[summarize] Progress: 5/10 summaries completed
+  [6/10] TRA-20251003_135821-006 → 965 tokens, $0.0002
+[summarize] Progress: 6/10 summaries completed
+  [7/10] TRA-20251003_135821-007 → 1063 tokens, $0.0002
+[summarize] Progress: 7/10 summaries completed
+  [8/10] TRA-20251003_135821-010 → 1234 tokens, $0.0002
+[summarize] Progress: 8/10 summaries completed
+  [9/10] TRA-20251003_135821-009 → 1201 tokens, $0.0002
+[summarize] Progress: 9/10 summaries completed
+  [10/10] TRA-20251003_135821-008 → 1068 tokens, $0.0002
+[summarize] Progress: 10/10 summaries completed
+[summarize] ✓ Summarized 10 transcripts
+[summarize] ✓ Saved 10 summaries to runs/20251003_135749/summaries.jsonl
+[cli] Using run: 20251003_135749
+
+[judge] Evaluating 10 summaries...
+[judge] Evaluating 10 summaries with 3 workers...
+  [1/10] TRA-20251003_135821-004 → ✗ avg=3.0, 787 tokens, $0.0002
+[judge] Progress: 1/10 evaluations completed
+  [2/10] TRA-20251003_135821-005 → ✗ avg=2.8, 826 tokens, $0.0002
+[judge] Progress: 2/10 evaluations completed
+  [3/10] TRA-20251003_135821-001 → ✗ avg=3.0, 808 tokens, $0.0002
+[judge] Progress: 3/10 evaluations completed
+  [4/10] TRA-20251003_135821-003 → ✗ avg=3.2, 785 tokens, $0.0002
+[judge] Progress: 4/10 evaluations completed
+  [5/10] TRA-20251003_135821-002 → ✗ avg=3.2, 809 tokens, $0.0002
+[judge] Progress: 5/10 evaluations completed
+  [6/10] TRA-20251003_135821-006 → ✗ avg=3.0, 814 tokens, $0.0002
+[judge] Progress: 6/10 evaluations completed
+  [7/10] TRA-20251003_135821-007 → ✗ avg=2.4, 838 tokens, $0.0002
+[judge] Progress: 7/10 evaluations completed
+  [8/10] TRA-20251003_135821-009 → ✗ avg=2.8, 811 tokens, $0.0002
+[judge] Progress: 8/10 evaluations completed
+  [9/10] TRA-20251003_135821-010 → ✗ avg=2.4, 822 tokens, $0.0002
+[judge] Progress: 9/10 evaluations completed
+  [10/10] TRA-20251003_135821-008 → ✗ avg=3.0, 775 tokens, $0.0002
+[judge] Progress: 10/10 evaluations completed
+
+[judge] ✓ Saved 10 evaluations to runs/20251003_135749/evaluations.jsonl
+[judge] Session totals: 5910 in + 2165 out = 8075 tokens, $0.0022
+[judge] ✓ Evaluated 10 summaries
+[judge] ✓ Saved 10 evaluations to runs/20251003_135749/evaluations.jsonl
+- **conciseness:** avg=3.75, min=3, max=4
+- **actionability:** avg=2.00, min=2, max=2
+- **content_accuracy:** avg=2.00, min=2, max=2
+- **detail:** avg=2.00, min=2, max=2
+- **next_steps:** avg=1.00, min=1, max=1
+
+## Top Failure Modes
+
+- **clarity:** 10 failures
+- **completeness:** 9 failures
+- **structure:** 5 failures
+- **detail:** 3 failures
+- **accuracy:** 2 failures
+- **actionability:** 1 failures
+- **conciseness:** 1 failures
+- **content_accuracy:** 1 failures
+- **next_steps:** 1 failures
+
+## Cost Summary
+
+- **Total Cost:** $0.0042
+- **Total Tokens:** 19,044
+- All costs based on provider-reported usage.
+
+============================================================
+[cli] Using run: 20251003_135749
+
+[tune] Analyzing 10 evaluations...
+[tune] Using LLM-assisted tuning (provider: openai, model: small)
+[tune] LLM tuner: 1248 tokens
+[tune] ✓ Saved prompt suggestions to runs/20251003_135749/prompts.diff.md
+
+Suggestions:
+  + Include specific next steps and timelines in the summary.
+  + Ensure the use of precise terminology from the transcript to enhance clarity.
+  - Use plain language
+  + Use clear and specific language to avoid vagueness.
+  - Return ONLY valid JSON, no markdown fences
+  
+Rationale: These improvements address systemic issues in clarity, completeness, and actionability. By explicitly requiring next steps and precise terminology, summaries will be more informative and actionable. Replacing vague language with clear specifications will enhance understanding, while removing unnecessary constraints on format allows for better focus on content quality.
+
+============================================================
+PROPOSED CHANGES:
+============================================================
+--- current_prompt+++ proposed_prompt@@ -1,5 +1,7 @@ You are a call summarizer. Generate a JSON summary.
+ 
+ Rules:
+-- Return ONLY valid JSON, no markdown fences
+-- Use plain language
++
++- Include specific next steps and timelines in the summary.
++- Ensure the use of precise terminology from the transcript to enhance clarity.
++- Use clear and specific language to avoid vagueness.
+============================================================
+[tune] Backup saved to configs/prompts/summarizer.system.txt.backup
+[tune] ✓ Changes applied to configs/prompts/summarizer.system.txt
+
+[tune] ⚠️  Prompt has been modified. Re-run summarize → judge to see improvements.
+
+Prompt after iteration 1:
+You are a call summarizer. Generate a JSON summary.
+
+Rules:
+
+- Include specific next steps and timelines in the summary.
+- Ensure the use of precise terminology from the transcript to enhance clarity.
+- Use clear and specific language to avoid vagueness.
+━━━━ ITERATION 2/5 ━━━━
+[cli] Run ID: 20251003_135852
+[cli] Run directory: runs/20251003_135852
+
+[generate] Regenerating dataset (replacing 10 existing transcripts)
+[generate] Generating 10 synthetic transcripts with 5 workers...
+[generate] Progress: 1/10 transcripts completed
+[generate] Progress: 2/10 transcripts completed
+[generate] Progress: 3/10 transcripts completed
+[generate] Progress: 4/10 transcripts completed
+[generate] Progress: 5/10 transcripts completed
+[generate] Progress: 6/10 transcripts completed
+[generate] Progress: 7/10 transcripts completed
+[generate] Progress: 8/10 transcripts completed
+[generate] Progress: 9/10 transcripts completed
+[generate] Progress: 10/10 transcripts completed
+[generate] Saved 10 transcripts to data/transcripts.jsonl and data/transcripts.csv
+[generate] ✓ Generated 10 new transcripts
+[cli] Using run: 20251003_135852
+
+[summarize] Loading 10 transcripts...
+[summarize] Summarizing 10 transcripts with 5 workers...
+  [1/10] TRA-20251003_135923-004 → 1189 tokens, $0.0002
+[summarize] Progress: 1/10 summaries completed
+  [2/10] TRA-20251003_135923-003 → 1039 tokens, $0.0002
+[summarize] Progress: 2/10 summaries completed
+  [3/10] TRA-20251003_135923-001 → 1082 tokens, $0.0002
+[summarize] Progress: 3/10 summaries completed
+  [4/10] TRA-20251003_135923-006 → 1024 tokens, $0.0002
+[summarize] Progress: 4/10 summaries completed
+  [5/10] TRA-20251003_135923-002 → 1075 tokens, $0.0002
+[summarize] Progress: 5/10 summaries completed
+  [6/10] TRA-20251003_135923-007 → 1083 tokens, $0.0002
+[summarize] Progress: 6/10 summaries completed
+  [7/10] TRA-20251003_135923-005 → 1259 tokens, $0.0002
+[summarize] Progress: 7/10 summaries completed
+  [8/10] TRA-20251003_135923-008 → 1066 tokens, $0.0002
+[summarize] Progress: 8/10 summaries completed
+  [9/10] TRA-20251003_135923-010 → 1118 tokens, $0.0002
+[summarize] Progress: 9/10 summaries completed
+  [10/10] TRA-20251003_135923-009 → 1001 tokens, $0.0002
+[summarize] Progress: 10/10 summaries completed
+[summarize] ✓ Summarized 10 transcripts
+[summarize] ✓ Saved 10 summaries to runs/20251003_135852/summaries.jsonl
+[cli] Using run: 20251003_135852
+
+[judge] Evaluating 10 summaries...
+[judge] Evaluating 10 summaries with 3 workers...
+  [1/10] TRA-20251003_135923-003 → ✗ avg=3.5, 790 tokens, $0.0002
+[judge] Progress: 1/10 evaluations completed
+  [2/10] TRA-20251003_135923-004 → ✗ avg=2.8, 809 tokens, $0.0002
+[judge] Progress: 2/10 evaluations completed
+  [3/10] TRA-20251003_135923-001 → ✗ avg=3.0, 833 tokens, $0.0002
+[judge] Progress: 3/10 evaluations completed
+  [4/10] TRA-20251003_135923-002 → ✗ avg=3.0, 800 tokens, $0.0002
+[judge] Progress: 4/10 evaluations completed
+  [6/10] TRA-20251003_135923-006 → ERROR: 'NoneType' object is not subscriptable
+  [7/10] TRA-20251003_135923-007 → ✗ avg=3.4, 817 tokens, $0.0002
+[judge] Progress: 7/10 evaluations completed
+  [8/10] TRA-20251003_135923-005 → ✗ avg=3.0, 800 tokens, $0.0002
+[judge] Progress: 8/10 evaluations completed
+  [9/10] TRA-20251003_135923-008 → ✗ avg=3.0, 804 tokens, $0.0002
+[judge] Progress: 9/10 evaluations completed
+  [10/10] TRA-20251003_135923-010 → ✗ avg=3.0, 802 tokens, $0.0002
+[judge] Progress: 10/10 evaluations completed
+  [11/10] TRA-20251003_135923-009 → ✗ avg=3.0, 803 tokens, $0.0002
+[judge] Progress: 11/10 evaluations completed
+
+[judge] ✓ Saved 9 evaluations to runs/20251003_135852/evaluations.jsonl
+[judge] Session totals: 5319 in + 1939 out = 7258 tokens, $0.0020
+[judge] ✓ Evaluated 9 summaries
+[judge] ✓ Saved 9 evaluations to runs/20251003_135852/evaluations.jsonl
+- **clarity:** avg=2.78, min=2, max=3
+- **completeness:** avg=2.12, min=2, max=3
+- **accuracy:** avg=3.62, min=2, max=4
+- **conciseness:** avg=4.00, min=3, max=5
+- **engagement:** avg=3.00, min=3, max=3
+- **structure:** avg=3.00, min=3, max=3
+- **content_accuracy:** avg=3.00, min=3, max=3
+
+## Top Failure Modes
+
+- **clarity:** 9 failures
+- **completeness:** 8 failures
+- **structure:** 3 failures
+- **accuracy:** 2 failures
+- **conciseness:** 2 failures
+- **engagement:** 1 failures
+- **content_accuracy:** 1 failures
+
+## Cost Summary
+
+- **Total Cost:** $0.0041
+- **Total Tokens:** 18,194
+- All costs based on provider-reported usage.
+
+============================================================
+[cli] Using run: 20251003_135852
+
+[tune] Analyzing 9 evaluations...
+[tune] Using LLM-assisted tuning (provider: openai, model: small)
+[tune] LLM tuner: 1199 tokens
+[tune] ✓ Saved prompt suggestions to runs/20251003_135852/prompts.diff.md
+
+Suggestions:
+  + Include a requirement for specific action items and their associated timelines.
+  + Emphasize the need for clear segmentation of topics within the summary.
+  - Ensure the use of precise terminology from the transcript to enhance clarity.
+  - Use clear and specific language to avoid vagueness.
+  + Prioritize specificity in language to eliminate vagueness.
+  
+Rationale: These improvements address systemic issues in clarity, completeness, and actionability. By mandating specific action items and timelines, summaries will become more actionable and complete. Emphasizing clear topic segmentation will enhance organization and readability. Removing the vague terminology requirement and replacing it with a focus on specificity will help reduce ambiguity, leading to clearer summaries overall.
+
+============================================================
+PROPOSED CHANGES:
+============================================================
+--- current_prompt+++ proposed_prompt@@ -3,5 +3,6 @@ Rules:
+ 
+ - Include specific next steps and timelines in the summary.
+-- Ensure the use of precise terminology from the transcript to enhance clarity.
+-- Use clear and specific language to avoid vagueness.+- Include a requirement for specific action items and their associated timelines.
++- Emphasize the need for clear segmentation of topics within the summary.
++- Prioritize specificity in language to eliminate vagueness.
+============================================================
+[tune] Backup saved to configs/prompts/summarizer.system.txt.backup
+[tune] ✓ Changes applied to configs/prompts/summarizer.system.txt
+
+[tune] ⚠️  Prompt has been modified. Re-run summarize → judge to see improvements.
+
+Prompt after iteration 2:
+You are a call summarizer. Generate a JSON summary.
+
+Rules:
+
+- Include specific next steps and timelines in the summary.
+- Include a requirement for specific action items and their associated timelines.
+- Emphasize the need for clear segmentation of topics within the summary.
+- Prioritize specificity in language to eliminate vagueness.
+━━━━ ITERATION 3/5 ━━━━
+[cli] Run ID: 20251003_135957
+[cli] Run directory: runs/20251003_135957
+
+[generate] Regenerating dataset (replacing 10 existing transcripts)
+[generate] Generating 10 synthetic transcripts with 5 workers...
+[generate] Progress: 1/10 transcripts completed
+[generate] Progress: 2/10 transcripts completed
+[generate] Progress: 3/10 transcripts completed
+[generate] Progress: 4/10 transcripts completed
+[generate] Progress: 5/10 transcripts completed
+[generate] Progress: 6/10 transcripts completed
+[generate] Progress: 7/10 transcripts completed
+[generate] Progress: 8/10 transcripts completed
+[generate] Progress: 9/10 transcripts completed
+[generate] Progress: 10/10 transcripts completed
+[generate] Saved 10 transcripts to data/transcripts.jsonl and data/transcripts.csv
+[generate] ✓ Generated 10 new transcripts
+[cli] Using run: 20251003_135957
+
+[summarize] Loading 10 transcripts...
+[summarize] Summarizing 10 transcripts with 5 workers...
+  [1/10] TRA-20251003_140036-004 → 1224 tokens, $0.0003
+[summarize] Progress: 1/10 summaries completed
+  [2/10] TRA-20251003_140036-003 → 1175 tokens, $0.0002
+[summarize] Progress: 2/10 summaries completed
+  [3/10] TRA-20251003_140036-002 → 1131 tokens, $0.0002
+[summarize] Progress: 3/10 summaries completed
+  [4/10] TRA-20251003_140036-005 → 1273 tokens, $0.0003
+[summarize] Progress: 4/10 summaries completed
+  [5/10] TRA-20251003_140036-001 → 1087 tokens, $0.0002
+[summarize] Progress: 5/10 summaries completed
+  [6/10] TRA-20251003_140036-008 → 1160 tokens, $0.0002
+[summarize] Progress: 6/10 summaries completed
+  [7/10] TRA-20251003_140036-010 → 1120 tokens, $0.0002
+[summarize] Progress: 7/10 summaries completed
+  [8/10] TRA-20251003_140036-006 → 1201 tokens, $0.0003
+[summarize] Progress: 8/10 summaries completed
+  [9/10] TRA-20251003_140036-007 → 1138 tokens, $0.0002
+[summarize] Progress: 9/10 summaries completed
+  [10/10] TRA-20251003_140036-009 → 1325 tokens, $0.0003
+[summarize] Progress: 10/10 summaries completed
+[summarize] ✓ Summarized 10 transcripts
+[summarize] ✓ Saved 10 summaries to runs/20251003_135957/summaries.jsonl
+[cli] Using run: 20251003_135957
+
+[judge] Evaluating 10 summaries...
+[judge] Evaluating 10 summaries with 3 workers...
+  [1/10] TRA-20251003_140036-002 → ✗ avg=3.0, 799 tokens, $0.0002
+[judge] Progress: 1/10 evaluations completed
+  [2/10] TRA-20251003_140036-004 → ✗ avg=3.0, 789 tokens, $0.0002
+[judge] Progress: 2/10 evaluations completed
+  [3/10] TRA-20251003_140036-003 → ✗ avg=3.0, 785 tokens, $0.0002
+[judge] Progress: 3/10 evaluations completed
+  [4/10] TRA-20251003_140036-005 → ✗ avg=3.0, 787 tokens, $0.0002
+[judge] Progress: 4/10 evaluations completed
+  [5/10] TRA-20251003_140036-001 → ✗ avg=3.0, 803 tokens, $0.0002
+[judge] Progress: 5/10 evaluations completed
+  [6/10] TRA-20251003_140036-008 → ✗ avg=3.0, 811 tokens, $0.0002
+[judge] Progress: 6/10 evaluations completed
+  [7/10] TRA-20251003_140036-007 → ✗ avg=3.0, 810 tokens, $0.0002
+[judge] Progress: 7/10 evaluations completed
+  [8/10] TRA-20251003_140036-010 → ✗ avg=3.0, 798 tokens, $0.0002
+[judge] Progress: 8/10 evaluations completed
+  [9/10] TRA-20251003_140036-006 → ✗ avg=2.4, 819 tokens, $0.0002
+[judge] Progress: 9/10 evaluations completed
+  [10/10] TRA-20251003_140036-009 → ✗ avg=3.0, 790 tokens, $0.0002
+[judge] Progress: 10/10 evaluations completed
+
+[judge] ✓ Saved 10 evaluations to runs/20251003_135957/evaluations.jsonl
+[judge] Session totals: 5910 in + 2081 out = 7991 tokens, $0.0021
+[judge] ✓ Evaluated 10 summaries
+[judge] ✓ Saved 10 evaluations to runs/20251003_135957/evaluations.jsonl
+## Dimension Statistics
+
+- **clarity:** avg=2.80, min=2, max=3
+- **detail:** avg=2.33, min=2, max=3
+- **structure:** avg=3.17, min=3, max=4
+- **accuracy:** avg=3.70, min=2, max=4
+- **completeness:** avg=2.12, min=2, max=3
+- **conciseness:** avg=3.00, min=3, max=3
+
+## Top Failure Modes
+
+- **clarity:** 10 failures
+- **completeness:** 8 failures
+- **structure:** 5 failures
+- **conciseness:** 4 failures
+- **detail:** 3 failures
+- **accuracy:** 2 failures
+
+## Cost Summary
+
+- **Total Cost:** $0.0046
+- **Total Tokens:** 19,825
+- All costs based on provider-reported usage.
+
+============================================================
+[cli] Using run: 20251003_135957
+
+[tune] Analyzing 10 evaluations...
+[tune] Using LLM-assisted tuning (provider: openai, model: small)
+[tune] LLM tuner: 1161 tokens
+[tune] ✓ Saved prompt suggestions to runs/20251003_135957/prompts.diff.md
+
+Suggestions:
+  + Include verification details when present
+  + Ensure all action items are clearly defined with associated timelines
+  - Include specific next steps and timelines in the summary.
+  - Emphasize the need for clear segmentation of topics within the summary.
+  + Ensure clear segmentation of topics to enhance readability and coherence.
+  
+Rationale: These improvements address systemic issues identified in evaluations. Adding verification details and ensuring clarity in action items will enhance completeness and accuracy. Removing redundancy in rules about timelines simplifies the prompt while maintaining focus on essential elements. The replacement of the segmentation rule clarifies the expectation for structure without being overly prescriptive.
+
+============================================================
+PROPOSED CHANGES:
+============================================================
+--- current_prompt+++ proposed_prompt@@ -2,7 +2,8 @@ 
+ Rules:
+ 
+-- Include specific next steps and timelines in the summary.
+ - Include a requirement for specific action items and their associated timelines.
+-- Emphasize the need for clear segmentation of topics within the summary.
+-- Prioritize specificity in language to eliminate vagueness.+- Prioritize specificity in language to eliminate vagueness.
++- Include verification details when present
++- Ensure all action items are clearly defined with associated timelines
++- Ensure clear segmentation of topics to enhance readability and coherence.
+============================================================
+[tune] Backup saved to configs/prompts/summarizer.system.txt.backup
+[tune] ✓ Changes applied to configs/prompts/summarizer.system.txt
+
+[tune] ⚠️  Prompt has been modified. Re-run summarize → judge to see improvements.
+
+Prompt after iteration 3:
+You are a call summarizer. Generate a JSON summary.
+
+Rules:
+
+- Include a requirement for specific action items and their associated timelines.
+- Prioritize specificity in language to eliminate vagueness.
+- Include verification details when present
+- Ensure all action items are clearly defined with associated timelines
+- Ensure clear segmentation of topics to enhance readability and coherence.
+━━━━ ITERATION 4/5 ━━━━
+[cli] Run ID: 20251003_140119
+[cli] Run directory: runs/20251003_140119
+
+[generate] Regenerating dataset (replacing 10 existing transcripts)
+[generate] Generating 10 synthetic transcripts with 5 workers...
+[generate] Progress: 1/10 transcripts completed
+[generate] Progress: 2/10 transcripts completed
+[generate] Progress: 3/10 transcripts completed
+[generate] Progress: 4/10 transcripts completed
+[generate] Progress: 5/10 transcripts completed
+[generate] Progress: 6/10 transcripts completed
+[generate] Progress: 7/10 transcripts completed
+[generate] Progress: 8/10 transcripts completed
+[generate] Progress: 9/10 transcripts completed
+[generate] Progress: 10/10 transcripts completed
+[generate] Saved 10 transcripts to data/transcripts.jsonl and data/transcripts.csv
+[generate] ✓ Generated 10 new transcripts
+[cli] Using run: 20251003_140119
+
+[summarize] Loading 10 transcripts...
+[summarize] Summarizing 10 transcripts with 5 workers...
+  [1/10] TRA-20251003_140204-002 → 1138 tokens, $0.0002
+[summarize] Progress: 1/10 summaries completed
+  [2/10] TRA-20251003_140204-004 → 1256 tokens, $0.0002
+[summarize] Progress: 2/10 summaries completed
+  [3/10] TRA-20251003_140204-006 → 1255 tokens, $0.0003
+[summarize] Progress: 3/10 summaries completed
+  [4/10] TRA-20251003_140204-005 → 1314 tokens, $0.0003
+[summarize] Progress: 4/10 summaries completed
+  [5/10] TRA-20251003_140204-003 → 1193 tokens, $0.0003
+[summarize] Progress: 5/10 summaries completed
+  [6/10] TRA-20251003_140204-001 → 1135 tokens, $0.0002
+[summarize] Progress: 6/10 summaries completed
+  [7/10] TRA-20251003_140204-007 → 1254 tokens, $0.0003
+[summarize] Progress: 7/10 summaries completed
+  [8/10] TRA-20251003_140204-008 → 1177 tokens, $0.0003
+[summarize] Progress: 8/10 summaries completed
+  [9/10] TRA-20251003_140204-010 → 1236 tokens, $0.0003
+[summarize] Progress: 9/10 summaries completed
+  [10/10] TRA-20251003_140204-009 → 1241 tokens, $0.0003
+[summarize] Progress: 10/10 summaries completed
+[summarize] ✓ Summarized 10 transcripts
+[summarize] ✓ Saved 10 summaries to runs/20251003_140119/summaries.jsonl
+[cli] Using run: 20251003_140119
+
+[judge] Evaluating 10 summaries...
+[judge] Evaluating 10 summaries with 3 workers...
+  [1/10] TRA-20251003_140204-002 → ✗ avg=3.2, 787 tokens, $0.0002
+[judge] Progress: 1/10 evaluations completed
+  [2/10] TRA-20251003_140204-006 → ✗ avg=2.5, 820 tokens, $0.0002
+[judge] Progress: 2/10 evaluations completed
+  [3/10] TRA-20251003_140204-004 → ✗ avg=2.2, 857 tokens, $0.0002
+[judge] Progress: 3/10 evaluations completed
+  [4/10] TRA-20251003_140204-005 → ✗ avg=3.0, 798 tokens, $0.0002
+[judge] Progress: 4/10 evaluations completed
+  [5/10] TRA-20251003_140204-003 → ✗ avg=3.0, 837 tokens, $0.0002
+[judge] Progress: 5/10 evaluations completed
+  [6/10] TRA-20251003_140204-001 → ✗ avg=3.0, 802 tokens, $0.0002
+[judge] Progress: 6/10 evaluations completed
+  [7/10] TRA-20251003_140204-007 → ✗ avg=3.0, 790 tokens, $0.0002
+[judge] Progress: 7/10 evaluations completed
+  [8/10] TRA-20251003_140204-010 → ✗ avg=3.0, 807 tokens, $0.0002
+[judge] Progress: 8/10 evaluations completed
+  [9/10] TRA-20251003_140204-008 → ✗ avg=2.5, 811 tokens, $0.0002
+[judge] Progress: 9/10 evaluations completed
+  [10/10] TRA-20251003_140204-009 → ✗ avg=3.0, 805 tokens, $0.0002
+[judge] Progress: 10/10 evaluations completed
+
+[judge] ✓ Saved 10 evaluations to runs/20251003_140119/evaluations.jsonl
+[judge] Session totals: 5910 in + 2204 out = 8114 tokens, $0.0022
+[judge] ✓ Evaluated 10 summaries
+[judge] ✓ Saved 10 evaluations to runs/20251003_140119/evaluations.jsonl
+- **detail:** avg=2.00, min=2, max=2
+- **structure:** avg=3.00, min=3, max=3
+- **content_accuracy:** avg=3.00, min=3, max=3
+- **organization:** avg=2.33, min=2, max=3
+- **next_steps:** avg=1.00, min=1, max=1
+
+## Top Failure Modes
+
+- **clarity:** 10 failures
+- **completeness:** 7 failures
+- **detail:** 4 failures
+- **accuracy:** 3 failures
+- **structure:** 3 failures
+- **organization:** 3 failures
+- **content_accuracy:** 1 failures
+- **next_steps:** 1 failures
+- **conciseness:** 1 failures
+
+## Cost Summary
+
+- **Total Cost:** $0.0049
+- **Total Tokens:** 20,313
+- All costs based on provider-reported usage.
+
+============================================================
+[cli] Using run: 20251003_140119
+
+[tune] Analyzing 10 evaluations...
+[tune] Using LLM-assisted tuning (provider: openai, model: small)
+[tune] LLM tuner: 1378 tokens
+[tune] ✓ Saved prompt suggestions to runs/20251003_140119/prompts.diff.md
+
+Suggestions:
+  + Include a requirement for clear next steps and responsibilities for each action item.
+  + Specify the need for precise language to enhance clarity and reduce ambiguity.
+  - Ensure all action items are clearly defined with associated timelines
+  - Ensure clear segmentation of topics to enhance readability and coherence.
+  + Require logical organization and clear transitions between topics for better flow.
+  
+Rationale: These improvements address systemic issues observed in the evaluations. Adding a requirement for clear next steps and responsibilities will enhance actionability, while emphasizing precise language will reduce vagueness. Removing redundancy in action item definitions simplifies the prompt. Finally, focusing on logical organization will improve clarity and coherence across all summaries.
+
+============================================================
+PROPOSED CHANGES:
+============================================================
+--- current_prompt+++ proposed_prompt@@ -5,5 +5,6 @@ - Include a requirement for specific action items and their associated timelines.
+ - Prioritize specificity in language to eliminate vagueness.
+ - Include verification details when present
+-- Ensure all action items are clearly defined with associated timelines
+-- Ensure clear segmentation of topics to enhance readability and coherence.+- Include a requirement for clear next steps and responsibilities for each action item.
++- Specify the need for precise language to enhance clarity and reduce ambiguity.
++- Require logical organization and clear transitions between topics for better flow.
+============================================================
+[tune] Backup saved to configs/prompts/summarizer.system.txt.backup
+[tune] ✓ Changes applied to configs/prompts/summarizer.system.txt
+
+[tune] ⚠️  Prompt has been modified. Re-run summarize → judge to see improvements.
+
+Prompt after iteration 4:
+You are a call summarizer. Generate a JSON summary.
+
+Rules:
+
+- Include a requirement for specific action items and their associated timelines.
+- Prioritize specificity in language to eliminate vagueness.
+- Include verification details when present
+- Include a requirement for clear next steps and responsibilities for each action item.
+- Specify the need for precise language to enhance clarity and reduce ambiguity.
+- Require logical organization and clear transitions between topics for better flow.
+━━━━ ITERATION 5/5 ━━━━
+[cli] Run ID: 20251003_140245
+[cli] Run directory: runs/20251003_140245
+
+[generate] Regenerating dataset (replacing 10 existing transcripts)
+[generate] Generating 10 synthetic transcripts with 5 workers...
+[generate] Progress: 1/10 transcripts completed
+[generate] Progress: 2/10 transcripts completed
+[generate] Progress: 3/10 transcripts completed
+[generate] Progress: 4/10 transcripts completed
+[generate] Progress: 5/10 transcripts completed
+[generate] Progress: 6/10 transcripts completed
+[generate] Progress: 7/10 transcripts completed
+[generate] Progress: 8/10 transcripts completed
+[generate] Progress: 9/10 transcripts completed
+[generate] Progress: 10/10 transcripts completed
+[generate] Saved 10 transcripts to data/transcripts.jsonl and data/transcripts.csv
+[generate] ✓ Generated 10 new transcripts
+[cli] Using run: 20251003_140245
+
+[summarize] Loading 10 transcripts...
+[summarize] Summarizing 10 transcripts with 5 workers...
+  [1/10] TRA-20251003_140334-001 → 1143 tokens, $0.0003
+[summarize] Progress: 1/10 summaries completed
+  [2/10] TRA-20251003_140334-005 → 1310 tokens, $0.0003
+[summarize] Progress: 2/10 summaries completed
+  [3/10] TRA-20251003_140334-004 → 1314 tokens, $0.0003
+[summarize] Progress: 3/10 summaries completed
+  [4/10] TRA-20251003_140334-002 → 1144 tokens, $0.0002
+[summarize] Progress: 4/10 summaries completed
+  [5/10] TRA-20251003_140334-003 → 1302 tokens, $0.0003
+[summarize] Progress: 5/10 summaries completed
+  [6/10] TRA-20251003_140334-006 → 1298 tokens, $0.0003
+[summarize] Progress: 6/10 summaries completed
+  [7/10] TRA-20251003_140334-007 → 1206 tokens, $0.0003
+[summarize] Progress: 7/10 summaries completed
+  [8/10] TRA-20251003_140334-009 → 1164 tokens, $0.0003
+[summarize] Progress: 8/10 summaries completed
+  [9/10] TRA-20251003_140334-008 → 1380 tokens, $0.0003
+[summarize] Progress: 9/10 summaries completed
+  [10/10] TRA-20251003_140334-010 → 1267 tokens, $0.0003
+[summarize] Progress: 10/10 summaries completed
+[summarize] ✓ Summarized 10 transcripts
+[summarize] ✓ Saved 10 summaries to runs/20251003_140245/summaries.jsonl
+[cli] Using run: 20251003_140245
+
+[judge] Evaluating 10 summaries...
+[judge] Evaluating 10 summaries with 3 workers...
+  [1/10] TRA-20251003_140334-001 → ✗ avg=2.5, 806 tokens, $0.0002
+[judge] Progress: 1/10 evaluations completed
+  [2/10] TRA-20251003_140334-005 → ✗ avg=3.0, 802 tokens, $0.0002
+[judge] Progress: 2/10 evaluations completed
+  [3/10] TRA-20251003_140334-004 → ✗ avg=2.5, 813 tokens, $0.0002
+[judge] Progress: 3/10 evaluations completed
+  [4/10] TRA-20251003_140334-002 → ✗ avg=3.0, 782 tokens, $0.0002
+[judge] Progress: 4/10 evaluations completed
+  [5/10] TRA-20251003_140334-006 → ✗ avg=2.5, 802 tokens, $0.0002
+[judge] Progress: 5/10 evaluations completed
+  [6/10] TRA-20251003_140334-003 → ✗ avg=2.8, 831 tokens, $0.0002
+[judge] Progress: 6/10 evaluations completed
+  [7/10] TRA-20251003_140334-007 → ✗ avg=3.2, 798 tokens, $0.0002
+[judge] Progress: 7/10 evaluations completed
+  [8/10] TRA-20251003_140334-008 → ✗ avg=3.0, 795 tokens, $0.0002
+[judge] Progress: 8/10 evaluations completed
+  [9/10] TRA-20251003_140334-009 → ✗ avg=3.0, 800 tokens, $0.0002
+[judge] Progress: 9/10 evaluations completed
+  [10/10] TRA-20251003_140334-010 → ✗ avg=3.0, 803 tokens, $0.0002
+[judge] Progress: 10/10 evaluations completed
+
+[judge] ✓ Saved 10 evaluations to runs/20251003_140245/evaluations.jsonl
+[judge] Session totals: 5910 in + 2122 out = 8032 tokens, $0.0022
+[judge] ✓ Evaluated 10 summaries
+[judge] ✓ Saved 10 evaluations to runs/20251003_140245/evaluations.jsonl
+- **clarity:** avg=2.60, min=2, max=3
+- **completeness:** avg=2.22, min=2, max=3
+- **structure:** avg=2.88, min=2, max=4
+- **accuracy:** avg=3.62, min=3, max=4
+- **detail:** avg=2.00, min=2, max=2
+- **engagement:** avg=4.00, min=4, max=4
+- **conciseness:** avg=3.50, min=3, max=4
+
+## Top Failure Modes
+
+- **clarity:** 10 failures
+- **completeness:** 9 failures
+- **structure:** 7 failures
+- **accuracy:** 3 failures
+- **content_accuracy:** 2 failures
+- **detail:** 1 failures
+- **conciseness:** 1 failures
+
+## Cost Summary
+
+- **Total Cost:** $0.0049
+- **Total Tokens:** 20,560
+- All costs based on provider-reported usage.
+
+============================================================
+[cli] Using run: 20251003_140245
+
+[tune] Analyzing 10 evaluations...
+[tune] Using LLM-assisted tuning (provider: openai, model: small)
+[tune] LLM tuner: 1285 tokens
+[tune] ✓ Saved prompt suggestions to runs/20251003_140245/prompts.diff.md
+
+Suggestions:
+  + Require summaries to explicitly outline all action items with assigned responsibilities and deadlines.
+  + Include a requirement for summaries to highlight key discussion points to ensure comprehensive coverage.
+  - Prioritize specificity in language to eliminate vagueness.
+  - Specify the need for precise language to enhance clarity and reduce ambiguity.
+  - Require logical organization and clear transitions between topics for better flow.
+  + Mandate a structured format that clearly segments topics and maintains logical flow.
+  
+Rationale: These improvements address systemic issues in coverage, actionability, and clarity. By explicitly requiring action items with responsibilities and deadlines, summaries will become more actionable and complete. Highlighting key discussion points ensures that important information is consistently captured. Removing redundant specificity requirements simplifies the prompt, while replacing vague organization instructions with a clear mandate for structure enhances overall coherence and flow.
+
+============================================================
+PROPOSED CHANGES:
+============================================================
+--- current_prompt+++ proposed_prompt@@ -3,8 +3,8 @@ Rules:
+ 
+ - Include a requirement for specific action items and their associated timelines.
+-- Prioritize specificity in language to eliminate vagueness.
+ - Include verification details when present
+ - Include a requirement for clear next steps and responsibilities for each action item.
+-- Specify the need for precise language to enhance clarity and reduce ambiguity.
+-- Require logical organization and clear transitions between topics for better flow.+- Require summaries to explicitly outline all action items with assigned responsibilities and deadlines.
++- Include a requirement for summaries to highlight key discussion points to ensure comprehensive coverage.
++- Mandate a structured format that clearly segments topics and maintains logical flow.
+============================================================
+[tune] Backup saved to configs/prompts/summarizer.system.txt.backup
+[tune] ✓ Changes applied to configs/prompts/summarizer.system.txt
+
+[tune] ⚠️  Prompt has been modified. Re-run summarize → judge to see improvements.
+
+Prompt after iteration 5:
+You are a call summarizer. Generate a JSON summary.
+
+Rules:
+
+- Include a requirement for specific action items and their associated timelines.
+- Include verification details when present
+- Include a requirement for clear next steps and responsibilities for each action item.
+- Require summaries to explicitly outline all action items with assigned responsibilities and deadlines.
+- Include a requirement for summaries to highlight key discussion points to ensure comprehensive coverage.
+- Mandate a structured format that clearly segments topics and maintains logical flow.
