@@ -239,9 +239,9 @@ This demo embodies concepts from:
 ## 🔗 Connect
 
 Built by Nathan [Your Last Name]  
-📧 [your.email@example.com](mailto:your.email@example.com)  
-💼 [LinkedIn](https://linkedin.com/in/yourprofile)  
-🐙 [GitHub](https://github.com/yourusername)
+📧 [nathanguion1@gmail.com](mailto:nathanguion1@gmail.com)  
+💼 [LinkedIn](https://linkedin.com/in/nguion)  
+🐙 [GitHub](https://github.com/ntguion)
 
 ---
 
