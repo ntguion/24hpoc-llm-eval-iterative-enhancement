@@ -368,7 +368,7 @@ with ThreadPoolExecutor(max_workers=workers) as executor:
 ## Future Enhancements
 
 ### Short-term
-- [ ] Add Anthropic/Google provider implementations
+- [x] Add Anthropic/Google provider implementations
 - [ ] Token estimation when usage unavailable
 - [ ] Configurable retry logic for rate limits
 - [ ] Export reports as PDF
@@ -377,6 +377,7 @@ with ThreadPoolExecutor(max_workers=workers) as executor:
 - [ ] Multi-run comparison charts
 - [ ] A/B test framework for prompts
 - [ ] Custom rubric editor in UI
+- [ ] Word-specific heuristic adjustments (i.e. auto-apply term subs for increased emphasis)
 - [ ] Batch API support for cost savings
 
 ### Long-term
@@ -391,17 +392,17 @@ with ThreadPoolExecutor(max_workers=workers) as executor:
 
 **Typical Run (10 samples):**
 ```
-Generate:   ~30s  (5 workers, ~6s/sample)
-Summarize:  ~20s  (5 workers, ~4s/sample)
-Judge:      ~40s  (5 workers, ~8s/sample)
-Total:      ~90s  (~9s/sample end-to-end)
-Cost:       ~$0.05 (using gpt-4o-mini)
+Generate:   ~15s  (5 workers, ~3s/sample)
+Summarize:  ~8s  (5 workers, ~2s/sample)
+Judge:      ~20s  (5 workers, ~4s/sample)
+Total:      ~45s  (~4s/sample end-to-end)
+Cost:       ~$0.005 (per sample using gpt-4o-mini)
 ```
 
 **Scalability:**
 - Linear scaling with worker count (up to rate limits)
 - Cost scales linearly with sample count
-- Storage: ~100KB per run (10 samples)
+- Storage is minial: ~100KB per run (10 samples)
 
 ---
 
@@ -447,7 +448,3 @@ Cost:       ~$0.05 (using gpt-4o-mini)
 - Terminal output - Real-time progress
 - UI metrics - Session aggregates
 - Reports - Run summaries
-
----
-
-This architecture demonstrates production-grade patterns for LLM evaluation systems while remaining simple enough to understand and extend.
