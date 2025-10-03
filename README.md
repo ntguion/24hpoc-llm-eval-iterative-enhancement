@@ -1,4 +1,4 @@
-# 24h POCs — #002 Business-Aligned Agent Assist
+# 24h POCs — #001 Business-Aligned Agent Assist
 
 **Evaluating non-deterministic LLM output with a business rubric**
 
