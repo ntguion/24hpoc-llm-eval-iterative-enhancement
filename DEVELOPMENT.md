@@ -84,13 +84,8 @@ This demonstrates the compounding feedback loop that drives quality improvements
 
 ## Future Enhancements
 
-- Anthropic/Google provider implementations
 - Token estimation when usage unavailable
 - Multi-run comparison charts
 - A/B test framework for prompts
 - Custom rubric editor in UI
 - Batch API support
-
----
-
-Built as a portfolio demonstration of production-grade LLM evaluation infrastructure.
