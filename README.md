@@ -240,7 +240,7 @@ This demo embodies concepts from:
 
 Built by Nathan [Your Last Name]  
 📧 [nathanguion1@gmail.com](mailto:nathanguion1@gmail.com)  
-💼 [LinkedIn](https://linkedin.com/in/nguion)  
+💼 [LinkedIn](https://linkedin.com/in/nathanguion/)
 🐙 [GitHub](https://github.com/ntguion)
 
 ---
