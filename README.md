@@ -177,4 +177,8 @@ Built by Nathan Guion
 
 ---
 
+<<<<<<< HEAD
 **⭐ If this helps, a star on the repo is always appreciated.**
+=======
+**⭐ If you found this useful, consider starring the repo!**
+>>>>>>> 3ef8f55b85a9a3ce07f304135577e8016face3f5
