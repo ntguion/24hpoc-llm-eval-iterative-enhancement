@@ -1,0 +1,21 @@
+# Ruff configuration for call-summary-copilot
+
+[lint]
+select = ["E", "F", "W", "C90", "I", "N", "UP"]
+ignore = [
+    "E501",  # Line too long (handled by formatter)
+    "E402",  # Module level import not at top (needed for dotenv loading)
+    "E701",  # Multiple statements on one line (colon) - OK for simple UI code
+    "E702",  # Multiple statements on one line (semicolon) - OK for simple UI code
+    "C901",  # Function is too complex - documented in code where needed
+]
+
+[lint.per-file-ignores]
+"streamlit_app.py" = ["E701", "E702"]  # UI code can be compact for readability
+"app/cli.py" = ["E402", "C901"]  # CLI needs dotenv before imports, complexity is manageable
+
+[format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+

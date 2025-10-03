@@ -1,0 +1,45 @@
+# Model registry: provider -> size -> {id, display_name, pricing}
+# NOTE: Refresh these IDs and prices from provider docs before release!
+
+openai:
+  small:
+    id: "gpt-4o-mini"
+    display_name: "GPT-4o Mini"
+    pricing:
+      input_per_1m: 0.15
+      output_per_1m: 0.60
+  large:
+    id: "gpt-4o"
+    display_name: "GPT-4o"
+    pricing:
+      input_per_1m: 2.50
+      output_per_1m: 10.00
+
+anthropic:
+  small:
+    id: "claude-3-5-haiku-20241022"
+    display_name: "Claude 3.5 Haiku"
+    pricing:
+      input_per_1m: 1.00
+      output_per_1m: 5.00
+  large:
+    id: "claude-3-5-sonnet-20241022"
+    display_name: "Claude 3.5 Sonnet"
+    pricing:
+      input_per_1m: 3.00
+      output_per_1m: 15.00
+
+google:
+  small:
+    id: "gemini-2.0-flash-exp"
+    display_name: "Gemini 2.0 Flash"
+    pricing:
+      input_per_1m: 0.075
+      output_per_1m: 0.30
+  large:
+    id: "gemini-1.5-pro"
+    display_name: "Gemini 1.5 Pro"
+    pricing:
+      input_per_1m: 1.25
+      output_per_1m: 5.00
+

@@ -1,0 +1,28 @@
+Rubric:
+{rubric}
+
+Original Transcript:
+{transcript_json}
+
+Candidate Summary:
+{summary_json}
+
+Evaluate the summary against the transcript using the rubric WITH HIGH STANDARDS.
+
+Apply these strict criteria:
+- Coverage: Must capture ALL key points including verification details, timelines, specific plan names/codes, and follow-up commitments. Vague language or missing context = deduction.
+- Factuality: Zero tolerance for hallucinations, assumptions, or extrapolations. Every claim must be directly traceable to transcript text.
+- Actionability: Next steps must be specific (who, what, when), not generic. Missing deadlines, contact methods, or portal instructions = lower score.
+- Structure/Brevity: Must be concise yet complete. Redundancy, unclear flow, or missing key fields = deduction.
+- Safety/Compliance: Must avoid PHI specifics, include disclaimers where stated, flag any compliance gaps.
+
+Be TOUGH but FAIR. Most summaries should score 3-4, with 5 reserved for truly exceptional work.
+
+Return JSON with this EXACT structure:
+{{
+  "scores": {{"coverage": <1-5>, "factuality": <1-5>, "actionability": <1-5>, "structure_brevity": <1-5>, "safety_compliance": <1-5>}},
+  "rationales": {{"coverage": "<one-sentence reason citing specific gaps>", "factuality": "<reason>", "actionability": "<reason>", "structure_brevity": "<reason>", "safety_compliance": "<reason>"}},
+  "hallucination_flags": ["<quote any hallucinated claims>"],
+  "suggested_prompt_changes": "<1-3 concrete rules to add, formatted as bullet points starting with '-', e.g. '- Always include member ID from verification\\n- Specify exact timeframes not vague terms'>"
+}}
+

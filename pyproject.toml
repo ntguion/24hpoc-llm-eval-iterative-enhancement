@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "call-summary-copilot"
+version = "0.1.0"
+description = "Eval-first, auditable call summary copilot (demo)"
+requires-python = ">=3.10"
+dependencies = [
+  "pydantic>=2.5",
+  "pyyaml>=6.0",
+  "pandas>=2.0",
+  "streamlit>=1.36",
+  "tqdm>=4.66",
+  "rich>=13.7",
+  "openai>=1.0",
+  "anthropic>=0.18",
+  "google-generativeai>=0.3",
+  "python-dotenv>=1.0",
+]
+
+[tool.setuptools]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+pythonpath = ["."]
+testpaths = ["tests"]
+
+
+
