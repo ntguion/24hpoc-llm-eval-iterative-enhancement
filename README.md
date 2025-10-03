@@ -265,7 +265,7 @@ MIT License - See [LICENSE](LICENSE) for details.
 ## 🔗 Connect
 
 Built by Nathan Guion  
-📧 [athanguion1@gmail.com](mailto:nathanguion1@gmail.com)  
+📧 [nathanguion1@gmail.com](mailto:nathanguion1@gmail.com)  
 💼 [LinkedIn](https://linkedin.com/in/nathanguion)  
 🐙 [GitHub](https://github.com/ntguion)
 
