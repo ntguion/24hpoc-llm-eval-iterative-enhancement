@@ -20,11 +20,11 @@ def test_gates_pass():
     rubric = Rubric(config_path)
 
     scores = {
-        "coverage": 5,
-        "factuality": 5,
-        "actionability": 5,
-        "structure_brevity": 5,
-        "safety_compliance": 5,
+        "call_resolution": 5,
+        "action_items": 5,
+        "context_preservation": 5,
+        "compliance_notes": 5,
+        "quality_indicators": 5,
     }
 
     assert rubric.check_gates(scores, []) is True
@@ -36,11 +36,11 @@ def test_gates_fail_low_avg():
     rubric = Rubric(config_path)
 
     scores = {
-        "coverage": 3,
-        "factuality": 3,
-        "actionability": 3,
-        "structure_brevity": 3,
-        "safety_compliance": 3,
+        "call_resolution": 3,
+        "action_items": 3,
+        "context_preservation": 3,
+        "compliance_notes": 3,
+        "quality_indicators": 3,
     }
 
     assert rubric.check_gates(scores, []) is False
@@ -52,11 +52,11 @@ def test_gates_fail_hallucination():
     rubric = Rubric(config_path)
 
     scores = {
-        "coverage": 5,
-        "factuality": 5,
-        "actionability": 5,
-        "structure_brevity": 5,
-        "safety_compliance": 5,
+        "call_resolution": 5,
+        "action_items": 5,
+        "context_preservation": 5,
+        "compliance_notes": 5,
+        "quality_indicators": 5,
     }
 
     assert rubric.check_gates(scores, ["Hallucinated claim ID"]) is False

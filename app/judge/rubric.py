@@ -31,7 +31,7 @@ class Rubric:
                 return False
 
         # Check hallucination flags
-        if self.gates["no_hallucination_flags"] and hallucination_flags:
+        if self.gates["no_critical_failures"] and hallucination_flags:
             return False
 
         return True
